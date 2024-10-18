@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const router = require("./routes/index.js");
 
 const server = express();
 
@@ -9,9 +10,10 @@ server.use(cors());
 server.use(morgan("dev"));
 server.use(express.json());
 
-// Ruta simple para verificar que el servidor está funcionando
-server.get("/", (req, res) => {
-  res.send("Servidor funcionando correctamente");
+server.use("/therapp", router);
+
+server.use((req, res, next) => {
+  res.status(404).json({ error: "Not Found" });
 });
 
 // Manejo básico de errores
