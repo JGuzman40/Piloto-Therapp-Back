@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [2, 25], // El nombre debe tener entre 2 y 50 caracteres
+          len: [2, 25], // El nombre debe tener entre 2 y 25 caracteres
         },
       },
       email: {
@@ -39,6 +39,15 @@ module.exports = (sequelize) => {
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+      },
+      eventId: {
+        // Campo para asociar el usuario con un evento
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: "Events", // Asegúrate de que se llame 'Events'
+          key: "id",
+        },
       },
     },
     {

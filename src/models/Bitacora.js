@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Segment",
+    "Bitacora",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -18,16 +18,24 @@ module.exports = (sequelize) => {
           key: "id",
         },
       },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      topics: {
-        type: DataTypes.TEXT, // Podría ser una lista de temas
+      generalInfo: {
+        type: DataTypes.JSON, // Para almacenar la información general
         allowNull: true,
       },
-      files: {
-        type: DataTypes.JSON, // Para almacenar rutas a archivos (PDF, MP4, JPG, etc.)
+      intention: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      dailyDose: {
+        type: DataTypes.JSON, // Para almacenar dosis diarias
+        allowNull: true,
+      },
+      elements: {
+        type: DataTypes.JSON, // Para los elementos
+        allowNull: true,
+      },
+      states: {
+        type: DataTypes.JSON, // Para almacenar los estados
         allowNull: true,
       },
     },
